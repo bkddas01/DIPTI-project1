@@ -62,3 +62,22 @@ docker login
 
 docker push bkddas/docker_images
 ```
+
+To deploy your container to a Kubernetes cluster using a NodePort service, follow these steps:
+# Step 5: Create a Kubernetes Deployment
+
+The Deployment will ensure your container is running and can manage updates. Save the following YAML as\
+*deployment.yaml*
+
+
+
+
+
+
+
+
+
+
+
+
+
