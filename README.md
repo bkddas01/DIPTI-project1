@@ -8,7 +8,7 @@ File: **index.html**
 
 
 
-```bash
+```html
   <!doctype html>
 <html>
  <body style="backgroud-color:rgb(49, 214, 220);"><center>
@@ -29,7 +29,7 @@ File: **index.html**
 ### Step 2: Create the Dockerfile
 This Dockerfile uses the Nginx base image and serves the index.html file by copying it into the Nginx HTML directory.
 
-```bash
+```dockerfile
 FROM nginx
 COPY index.html /usr/share/nginx/html
 EXPOSE 8080
@@ -69,7 +69,7 @@ To deploy your container to a Kubernetes cluster using a NodePort service, follo
 The Deployment will ensure your container is running and can manage updates. Save the following YAML as\
 *deployment.yaml*
 
-```bash
+```yaml
   apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -97,7 +97,7 @@ spec:
 ### Step 6: Create a NodePort Service
 #### The NodePort service will expose your container to a port on the cluster nodes. Save this YAML as service.yaml
 
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
