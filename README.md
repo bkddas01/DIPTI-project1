@@ -69,6 +69,67 @@ To deploy your container to a Kubernetes cluster using a NodePort service, follo
 The Deployment will ensure your container is running and can manage updates. Save the following YAML as\
 *deployment.yaml*
 
+```bash
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myproject
+  name: myproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myproject
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myproject
+    spec:
+      containers:
+      - image: bkddas/docker_images:latest
+        name: myproject
+
+```
+### Step 6: Create a NodePort Service
+#### The NodePort service will expose your container to a port on the cluster nodes. Save this YAML as service.yaml
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myproject
+  name: web-server
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: myproject
+  type: NodePort
+
+```
+### Step 7: Apply the YAML Files
+#### Run the following commands to deploy the container:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+### Step 8: Access the Application
+#### Access the application using the node's IP and the NodePort
+
+```bash
+http://<node-ip>:"NodePort port number"
+```
 
 
 
