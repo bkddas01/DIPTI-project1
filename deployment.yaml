@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myproject
+  name: myproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myproject
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myproject
+    spec:
+      containers:
+      - image: bkddas/docker_images:latest
+        name: myproject
